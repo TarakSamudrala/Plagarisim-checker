@@ -1,0 +1,148 @@
+﻿@model PlagarismCheck.Models.RegisteredUsersViewModel
+<style type="text/css">
+   #result2 td {
+            border-bottom: 1px dotted;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        
+        $(".pageIndexLink").click(function (e) {
+            e.preventDefault();
+            $('#CurrentPage').val(this.name);
+            $('#submitSearch').submit();
+        });
+
+      
+        });
+</script>
+@using (Html.BeginForm("RegisteredUsers", "Home", FormMethod.Post, new { id = "submitSearch" }))
+{
+
+    @Html.HiddenFor(m => m.CurrentPage, new { id = "CurrentPage" })
+    @Html.HiddenFor(m => m.RowCount)
+    <table style="width:100%;">
+        <tr>
+            <td>
+                <h1 style="float: left;">
+                  Registered Students
+                </h1>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <fieldset style="padding: 6px 9px;border: 2px solid white;border-radius: 18px;">
+        <legend>
+            Filter Search
+        </legend>
+
+        <table>
+            <tr style=" background-color: transparent; border: 0px;">
+                <th>Student Name</th>
+                <td>@Html.TextBoxFor(c => c.Fullname)</td>
+                <th>Student Group</th>
+                <td>@Html.DropDownListFor(c => c.Group, new List<SelectListItem>() {
+                        new SelectListItem { Value = "CSE", Text = "CSE" },
+                        new SelectListItem { Value = "ECE", Text = "ECE" },
+                         new SelectListItem { Value = "MECH", Text = "MECH" },
+                        new SelectListItem { Value = "Civil", Text = "Civil" },
+                         new SelectListItem { Value = "IT", Text = "IT" },
+                        new SelectListItem { Value = "EEE", Text = "EEE" }
+                        },"--Select--")</td>
+        </tr>
+        <tr style=" background-color: transparent; border: 0px;">
+            <th>Student Year</th>
+
+            <td>
+                @Html.DropDownListFor(c => c.Year, new List<SelectListItem>() {
+                        new SelectListItem { Value = "First Year", Text = "First Year" },
+                        new SelectListItem { Value = "Second Year", Text = "Second Year" },
+                         new SelectListItem { Value = "Third Year", Text = "Third Year" },
+                        new SelectListItem { Value = "Fourth Year", Text = "Fourth Year" }
+                        }, "--Select--")
+        </td>
+            <td colspan="2">
+               
+            </td>
+        </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;">
+                   <div style="position: relative;margin-left: 25%;">
+                    <input type="submit" value="Search" class="button" id="search" />
+                    <input type="reset" value="Reset" class="button" />
+                       </div>
+                    </td>
+                </tr>
+    </table>
+
+
+  
+
+</fieldset>
+    <table id="result2">
+        <tr>
+            <th style="text-align:left;width: 30%;">
+               Full Name
+            </th>
+            <th style="text-align:left;width: 10%;">
+              Student Group
+            </th>
+            <th style=" width: 15%;text-align:center;">
+              Student Year
+            </th>
+            <th style="text-align:center;">
+              Student Email
+            </th>
+            <th>
+                Student Phone
+            </th>
+            <th style="width: 10%;text-align:center;">
+                Actions
+            </th>
+        </tr>
+        @if (Model.Users.Count() > 0)
+        {
+            foreach (var item in Model.Users)
+            {
+               <tr>
+                   <td style="text-align:left;color:darkblue;font-size:15px;">@item.FullName</td>
+                   <td style ="color:darkblue;font-size:15px;">@item.Group</td>
+<td style="color:darkblue;font-size:15px;">@item.Year</td>
+    <td style="color:darkblue;font-size:15px;">@item.Email</td>
+    <td style="color:darkblue;font-size:15px;">@item.PhoneNumber</td>
+                   <td>
+                   <a href="@Url.Action("CheckPlagarism", "Home", new { UserID = @item.UserID })">
+                       <img style="width:50px;" src="~/Content/Report.png" /></a>
+                   
+                   </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5">Oops..No Result Found..</td>
+            </tr>
+        }
+    </table>
+
+    <div class="pagination">
+        @{
+        var startIndex = Math.Max(1, Model.CurrentPage - 25);
+        var endIndex = Math.Min(Model.PageCount, Model.CurrentPage + 25);
+        for (var i = startIndex; i <= endIndex; i++)
+        {
+            <text>&nbsp;</text>
+            if (i == Model.CurrentPage)
+            {<a href="#" class="active"> @i.ToString()</a> }
+            else
+            { @Html.ActionLink(i.ToString(), null, null, new { @class = "pageIndexLink", @name = i })}
+        }
+
+        if (endIndex < Model.PageCount)
+        {<a href="#">
+            @(" ...")
+        </a>}
+        }
+    </div>
+}

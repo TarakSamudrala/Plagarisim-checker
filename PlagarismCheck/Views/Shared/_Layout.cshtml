@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>PLAGIARISM CHECKER</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+    
+        <script src="~/Scripts/jquery-1.8.2.js"></script>
+        <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    </head>
+    <body>
+        <header>
+            <div class="content-wrapper">
+                <table style="width:100%;margin-bottom: 2px;padding: 0px;">
+                    <tr><td style="width:30%;"><img src="~/Content/Name.png" style="width: 100%;border-radius: 17px;display: inline-block;float: left;" /></td>
+                    <td style="width:70%;"><section id="login">
+    @Html.Partial("_LoginPartial")
+</section></td></tr>
+                    </table>
+                
+            </div>
+        </header>
+        <div id="body">
+          
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - PLAGIARISM</p>
+                </div>
+            </div>
+        </footer>
+        @RenderSection("scripts", required: false)
+  
+    </body>
+</html>

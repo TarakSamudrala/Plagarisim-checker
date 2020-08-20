@@ -1,0 +1,13 @@
+﻿@if (Session["UserName"] != null) { 
+    <text>
+            <text style="color:blue;font-size:15px;"> HI, @Session["UserName"].ToString()</text>
+            @Html.ActionLink("SignOut", "ULogOff", "Home", routeValues: null, htmlAttributes: new { id = "logoutlink", style = "color: red;text-decoration: underline;font-size: 20px;font-family: initial;" })
+        
+    </text>
+} else {
+    <ul>
+        <li>@Html.ActionLink("Student Registration", "Register", "Home", routeValues: null, htmlAttributes: new { id = "registerLink", style = "color: deeppink;text-decoration: underline;font-size: 23px;font-family: initial;" })</li>
+        <li>@Html.ActionLink("Student Log in", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink", style = "color: deeppink;text-decoration: underline;font-size: 23px;font-family: initial;" })</li>
+        <li>@Html.ActionLink("Faculty Login", "FacultyLogin", "Home", routeValues: null, htmlAttributes: new { id = "loginLink", style = "color: deeppink;text-decoration: underline;font-size: 23px;font-family: initial;" })</li>
+    </ul>
+}

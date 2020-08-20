@@ -1,0 +1,46 @@
+﻿@model PlagarismCheck.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>Create a new account.</h2>
+</hgroup>
+
+@using (Html.BeginForm("SaveRegister", "Home"))
+{ 
+    @Html.ValidationSummary()
+
+    <fieldset>
+        <legend>Registration Form</legend>
+        <table>
+            <tr><th>User Name</th><td>@Html.TextBoxFor(m => m.UserName)</td>
+                <th>Full Name</th>
+                <td>@Html.TextBoxFor(m => m.FullName)</td></tr>
+            <tr>
+                <th>Password</th>
+                <td>@Html.TextBoxFor(m => m.Password)</td>
+                <th>Confirm Password</th>
+                <td>@Html.TextBoxFor(m => m.ConfirmPassword)</td>
+            </tr>
+            <tr>
+                <th>Phone Number</th>
+                <td>@Html.TextBoxFor(m => m.PhoneNumber)</td>
+                <th>Email Address</th>
+                <td>@Html.TextBoxFor(m => m.Email)</td>
+            </tr>
+            <tr>
+                <th>Group</th>
+                <td>@Html.TextBoxFor(m => m.Group)</td>
+                <th>Year</th>
+                <td>@Html.TextBoxFor(m => m.Year)</td>
+            </tr>
+            </table>
+        <input type="submit" value="Register" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

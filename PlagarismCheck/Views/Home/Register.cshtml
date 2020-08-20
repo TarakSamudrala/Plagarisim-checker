@@ -1,0 +1,80 @@
+﻿@model PlagarismCheck.Models.RegisterModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<hgroup class="title" style="text-align:center;">
+
+    <h2 style="text-align:center;"><u>Register Student Account</u></h2>
+</hgroup>
+
+@using (Html.BeginForm("SaveRegister", "Home"))
+{
+    @Html.ValidationSummary()
+    <span >@if (@ViewBag.Message != null)
+           {
+              <a style="color:red;float:right;" href="@Url.Action("Login","Home")">Successfully Registered Click Here</a> 
+           }</span>
+    <h3 style="margin-bottom:2px"><u>Account Information</u></h3>
+        <fieldset style="padding: 6px 9px;border: 2px solid white;border-radius: 18px;">
+            <legend>Registration Form</legend>
+            <table>
+                <tr>
+                    <th>User Name</th>
+                    <td>@Html.TextBoxFor(m => m.UserName)</td>
+                    <th>Full Name</th>
+                    <td>@Html.TextBoxFor(m => m.FullName)</td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>@Html.PasswordFor(m => m.Password)</td>
+                    <th>Confirm Password</th>
+                    <td>@Html.PasswordFor(m => m.ConfirmPassword)</td>
+                </tr>
+                </table>
+            </fieldset>
+    <h3 style="margin-bottom:2px"><u>Personal Information</u></h3>
+    <fieldset style="padding: 6px 9px;border: 2px solid white;border-radius: 18px;">
+        <table>
+            <tr>
+                <th>Phone Number</th>
+                <td>@Html.TextBoxFor(m => m.PhoneNumber)</td>
+                <th>Email Address</th>
+                <td>@Html.TextBoxFor(m => m.Email)</td>
+            </tr>   
+        </table>
+    </fieldset>
+    <h3 style="margin-bottom:2px"><u>Group Information</u></h3>
+    <fieldset style="padding: 6px 9px;border: 2px solid white;border-radius: 18px;">
+        <table>
+            <tr>
+                <th>Student Group</th>
+                <td>
+                    @Html.DropDownListFor(c => c.Group, new List<SelectListItem>() {
+                        new SelectListItem { Value = "CSE", Text = "CSE" },
+                        new SelectListItem { Value = "ECE", Text = "ECE" },
+                         new SelectListItem { Value = "MECH", Text = "MECH" },
+                        new SelectListItem { Value = "Civil", Text = "Civil" },
+                         new SelectListItem { Value = "IT", Text = "IT" },
+                        new SelectListItem { Value = "EEE", Text = "EEE" }
+                        })
+                </td>
+            <th>Student Year</th>
+            <td>
+                @Html.DropDownListFor(c => c.Year, new List<SelectListItem>() {
+                        new SelectListItem { Value = "First Year", Text = "First Year" },
+                        new SelectListItem { Value = "Second Year", Text = "Second Year" },
+                         new SelectListItem { Value = "Third Year", Text = "Third Year" },
+                        new SelectListItem { Value = "Fourth Year", Text = "Fourth Year" }
+                        })
+            </td>
+            </tr>
+        </table>
+    </fieldset>
+    <input type="submit" value="Register" style=" margin-left: 40%;margin-top: 2%;" />
+
+}
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

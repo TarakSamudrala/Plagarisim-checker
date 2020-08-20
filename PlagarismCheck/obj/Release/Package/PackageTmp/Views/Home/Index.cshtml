@@ -1,0 +1,32 @@
+﻿<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CheckStatus").click(function () {
+            var URL = '@Url.Action("CandidateStatus", "Home")';
+            $("<a href='" + URL + "'></a>").click();
+           // location.href = URL;
+        })
+    });
+</script>
+
+<h2 style="text-align: center;text-decoration: underline;font-size:40px;">
+    Upload Plagarism Document
+</h2>
+
+@using (Html.BeginForm("UploadFile", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <br/>
+    <br/>
+    <div>
+        @Html.TextBox("file", "", new { type = "file", style = "border-radius: 0px;font-size: 24px;width: 100%;background: white;color:green;" }) <br />
+        <br />
+        <div style="margin:0% 0% 20% 40%; ">
+            <input type="submit" value="Upload Document" />
+           @Html.ActionLink("Check Status", "CandidateStatus", "Home", new { style = "text-decoration: none;font-weight: bold;color: white;padding: 10px 50px;background-color: green; border-radius: 12px;" })
+        </div>
+
+       
+
+    </div>
+
+
+}

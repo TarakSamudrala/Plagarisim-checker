@@ -1,0 +1,43 @@
+﻿@model PlagarismCheck.Models.CheckPlagarismModel
+           <script type="text/javascript">
+               $(document).ready(function () {
+                   $("#UploadDocument").click(function ()
+                   {
+                       var URL = '@Url.Action("Index","Home")';
+                       alert(URL);
+                       window.location.href = URL;
+                   })
+               });
+               </script>
+<table style="width:100%;">
+    <tr><td><h1 style="float: left;">
+    Document Submission Status
+</h1></td><td><span style="color:red;font-size:20px;float:right;">@ViewBag.Message</span></td></tr>
+    </table>
+@using (Html.BeginForm("SaveCandidateStatus", "Home", FormMethod.Post))
+{
+    @Html.HiddenFor(c=>c.UserID)
+<table id="report" style="width:100%">
+    <tr>
+        <th style="width:70%;">Document Text</th>
+        <th>Results</th>
+    </tr>
+    <tr>
+        <td>@Html.TextAreaFor(c => c.DocumentContent, new { style = "width:100%;height:140px;" })</td>
+        <td><span id="text" style="color: red;font-size: 75px;">@Model.Result</span></td>
+    </tr>
+    <tr>
+        <td colspan="2"> <span id="text" style="color: red;font-size: 55px;">Report Status ( <text style="color:green;">@Model.Status</text> )</span></td>
+
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div style="float:left;">
+                <input type="submit" value="Save Document Text" />
+                @Html.ActionLink("Upload Document", "Index", "Home", new { style="text-decoration: none;font-weight: bold;color: white;padding: 10px 50px;background-color: green; border-radius: 12px;"})
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+}

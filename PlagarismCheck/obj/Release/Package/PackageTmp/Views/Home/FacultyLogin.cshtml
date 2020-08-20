@@ -1,0 +1,35 @@
+﻿@model PlagarismCheck.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<section id="loginForm">
+    
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    <fieldset style="padding: 6px 9px;border: 2px solid white;border-radius: 18px;margin-right: 22px;padding-bottom: 41%;">
+        <h2>Faculty Login </h2>
+        <legend>Log in Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName)
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+        </ol>
+        <input type="submit" value="Log in" />
+    </fieldset>
+    }
+</section>
+<img src="~/Content/plagiarism-600x400.jpg" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

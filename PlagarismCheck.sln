@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlagarismCheck", "PlagarismCheck\PlagarismCheck.csproj", "{60065A11-2C62-4F2F-BE4B-A5875AC6A703}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{60065A11-2C62-4F2F-BE4B-A5875AC6A703}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60065A11-2C62-4F2F-BE4B-A5875AC6A703}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60065A11-2C62-4F2F-BE4B-A5875AC6A703}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60065A11-2C62-4F2F-BE4B-A5875AC6A703}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="plagarismModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="500" />
+    <Property Name="Email" Type="varchar" MaxLength="500" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="100" />
+    <Property Name="RoleID" Type="varchar" MaxLength="200" />
+    <Property Name="Year" Type="varchar" MaxLength="200" />
+    <Property Name="Group" Type="varchar" MaxLength="200" />
+    <Property Name="Status" Type="varchar" MaxLength="200" />
+    <Property Name="DocumentText" Type="varchar" MaxLength="60532" />
+    <Property Name="Result" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityContainer Name="plagarismModelStoreContainer">
+    <EntitySet Name="user" EntityType="Self.user" Schema="plagarism" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

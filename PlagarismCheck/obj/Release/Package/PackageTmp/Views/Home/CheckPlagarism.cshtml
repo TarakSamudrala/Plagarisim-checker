@@ -1,0 +1,100 @@
+﻿@model PlagarismCheck.Models.CheckPlagarismModel
+           <script type="text/javascript">
+               $(document).ready(function () {
+                   $("#report").hide();
+                   $("#Processing").hide();
+                   $("#check").click(function () {
+                       $("#Processing").show();
+                       var UserID = $("#UserID").val();
+                       var Group = $("#Group").val();
+                       var Year = $("#Year").val();
+                       var URL = '@Url.Action("CheckPlagarismResult", "Home")?UserID=' + UserID + '&Group=' + Group + '&Year=' + Year;
+                       $.get(URL, function (data) {
+                           $("#text").text(data);
+                           $("#report").show();
+                           $("#Result").val(data);
+                           $("#Processing").hide();
+                       })
+                   });
+               });
+               </script>
+<table style="width:100%;">
+    <tr>
+        <td>
+            <h1 style="float: left;">
+                Plagarism Check - @Model.FullName
+            </h1>
+        </td>
+        <td><span style="color:red;font-size:20px;float:right;">@ViewBag.Message</span></td>
+    </tr>
+</table>
+@using (Html.BeginForm("SaveCheckPlagarism", "Home", FormMethod.Post))
+{
+@Html.HiddenFor(c=>c.UserID)
+    @Html.HiddenFor(c => c.Result, new { id = "Result" })
+    <table style="width:100%">
+        <tr>
+            <th>
+                Student Group
+            </th>
+            <th>
+                Student Year
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownListFor(c => c.Group, new List<SelectListItem>() {
+                        new SelectListItem { Value = "CSE", Text = "CSE" },
+                        new SelectListItem { Value = "ECE", Text = "ECE" },
+                         new SelectListItem { Value = "MECH", Text = "MECH" },
+                        new SelectListItem { Value = "Civil", Text = "Civil" },
+                         new SelectListItem { Value = "IT", Text = "IT" },
+                        new SelectListItem { Value = "EEE", Text = "EEE" }
+                        },"--Select--")
+        </td>
+        <td>
+            @Html.DropDownListFor(c => c.Year, new List<SelectListItem>() {
+                        new SelectListItem { Value = "First Year", Text = "First Year" },
+                        new SelectListItem { Value = "Second Year", Text = "Second Year" },
+                         new SelectListItem { Value = "Third Year", Text = "Third Year" },
+                        new SelectListItem { Value = "Fourth Year", Text = "Fourth Year" }
+                        }, "--Select--")
+    </td>
+    <td><input type="button" id="check" value="Check Plagarism" /></td>
+</tr>
+</table>
+    <img src="~/Content/giphy.gif" style=" position: relative;margin-left: 40%;" id="Processing" />
+
+<table id="report" style="width:100%">
+    <tr>
+        <th style="width:70%;">Document Text</th>
+        <th>Percentage Matched</th>
+        </tr>
+    <tr>
+        <td>@Html.TextAreaFor(c => c.DocumentContent, new { style="width:100%;height:140px;"})</td>
+        <td><span id="text" style="color: red;font-size: 75px;">0</span></td>
+</tr>
+    <tr>
+        <td colspan="2">
+            <div style="float:left;">
+                @Html.DropDownListFor(c => c.Status, new List<SelectListItem>() {
+                        new SelectListItem { Value = "Validating", Text = "Validating" },
+                        new SelectListItem { Value = "Accepted", Text = "Accepted" },
+                         new SelectListItem { Value = "Un-Accepted", Text = "Un-Accepted" }}, "--Change Status--", new { })
+                <input type="submit" value="Save Status" />
+            </div>
+        </td>
+        <td>
+            </td>
+        </tr>
+    </table>
+
+
+
+  
+    
+}
+
